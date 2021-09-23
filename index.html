@@ -60,8 +60,28 @@
   <!-- add alt layout here -->
   <link rel="stylesheet" href="css/style-color1.css">
 
+  
   <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+  <script src="Https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+    emailjs.init("user_YC2pWojxt0HObT0qazlnH");
+    })();
+
+  </script>
 </head>
+<!-- User IDuser_YC2pWojxt0HObT0qazlnH
+Access Token3792d0310bcd98149262f8e635e36eef 
+swal({
+  title: "Good Job!",
+  text: "You clicked the button",
+  icon: "success",
+  button: "Aww yiss!",
+});
+
+-->
+
 
 <body id="menu" class="body-page">
 
@@ -218,11 +238,9 @@
             <div class="col-12 col-md-12 text-center" style="justify-content: center; text-align: center">
               <!-- title and description -->
               <div class="title-desc">
-                <h1 class="display-4 display-title anim-1 text-white mt-4" >Our Mission</h1>
-                <h4 class="anim-2 mt-2">Dreams Bought to reality</h4>
-                <p class="anim-2 mt-2">This describes what we do and what is our mission. At right you can
-                  see the awesome people behind. Our mission is to improve your general awareness and achieve good mental health through the study of mental health and to develop your mental level
-                </p>
+                <h1 class="display-4 display-title anim-1 text-white mt-4" >Welcome</h1>
+                <h4 class="anim-2 mt-2">Psychaitric Hospital Panadura</h4>
+                <p class="anim-2 mt-2">Welcome to the gang! We are thrilled to have someone with such impeccable taste amongst us</p>
               </div>
 
               <!-- Action button -->
@@ -711,7 +729,73 @@
     </div>
   </footer>
   <!-- END OF site footer -->
-  
+  <script>
+
+  function validate() {
+    let loader = document.querySelector(".loader")
+    let name = document.querySelector(".username")
+    let emial = document.querySelector(".email")
+    let msg = document.querySelector(".message")
+    let submit = document.querySelector(".submit")
+
+    submit.addEventListener("click", (e)=>{
+      e.preventDefault()
+
+      if(name.value == "" || email.value == "" || msg.value ==""){
+        inputemty();
+
+      }
+      else{
+        loader.style.display = "flex";
+        sendmail(name.value, email.value, msg.value)
+        success();
+        console.log("Email sent")
+        loader.style.display = "none";
+        sendmail() ? loader.style.display = "none" :
+        error()
+      }
+    })
+  }
+  validate()
+
+  function sendmail(name, emial, msg) {
+    emailjs.send("service_zg3676a","template_iyuuank",{
+      from_name: name,
+      to_name: email,
+      message: msg,
+    });
+  }
+
+  function success() {
+    swal({
+  title: "Good Job",
+  text: "You made it",
+  icon: "success",
+  button: "Continue",
+});
+  }
+  success()
+
+  function Error() {
+    swal({
+  title: "Unfortunately",
+  text: "Error made",
+  icon: "error",
+  button: "Continue",
+});
+  }
+  error()
+
+  function inputemty() {
+    swal({
+  title: "Oops !!",
+  text: "Input fields are required",
+  icon: "error",
+  button: "Continue",
+});
+  }
+  inputemty()
+  </script>
 
   <script src="js/vendor/jquery-1.12.4.min.js"></script>
   <script src="js/slick/slick.min.js"></script>
