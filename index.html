@@ -63,13 +63,14 @@
   
   <script src="js/vendor/modernizr-2.7.1.min.js"></script>
   <script src="Https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script type="text/javascript">
-    (function() {
-    emailjs.init("user_YC2pWojxt0HObT0qazlnH");
-    })();
-
+  (function() {
+  emailjs.init("user_Oj3zK2EEVuSKW0kVQXYr4");
+  })();
   </script>
+  
 </head>
 <!-- User IDuser_YC2pWojxt0HObT0qazlnH
 Access Token3792d0310bcd98149262f8e635e36eef 
@@ -668,18 +669,16 @@ swal({
             <h4>Write message</h4>
             <div class="form-container form-container-card">
               <!-- Message form container -->
-              <form class="send_message_form message form" method="post"
-                action="http://demo.highhay.com/casely/ajaxserver/serverfile.php" id="message_form">
                 <div class="form-group name">
-                  <input id="mes-name" name="name" type="text" placeholder="Name"
+                  <input id="fromName" name="name" type="text" placeholder="Name" 
                     class="form-control form-control-outline thick form-success-clean" required>
                 </div>
                 <div class="form-group email">
-                  <input id="mes-email" type="email" placeholder="Email" name="email"
+                  <input id="fromEmail" type="email" placeholder="Email" name="email"
                     class="form-control form-control-outline thick form-success-clean" required>
                 </div>
                 <div class="form-group no-border">
-                  <textarea id="mes-text" placeholder="Message ..." name="message"
+                  <textarea id="fromMessage" placeholder="Message ..." name="fromMessage"
                     class="form-control form-control-outline thick form-success-clean" required></textarea>
 
                   <div>
@@ -690,12 +689,11 @@ swal({
 
                 <div class="btns text-right">
                   <button id="submit-message" class="btn btn-outline-white btn-round btn-fullNot email_b"
-                    name="submit_message">
+                    name="submit_message" onclick='sendMail()'>
                     <span class="txt">Send Now</span>
                     <span class="arrow-icon"></span>
                   </button>
                 </div>
-              </form>
             </div>
           </div>
         </div>
@@ -731,6 +729,22 @@ swal({
   <!-- END OF site footer -->
   <script>
 
+  /* Email Js Function starts here */
+
+  function sendMail(params){
+    var tempParams = {
+      from_name : document.getElementById("fromName").value,
+      to_name : document.getElementById("fromEmail").value,
+      message : document.getElementById("fromMessage").value,
+    };
+
+    emailjs.send('service_t0rzor7','template_f67fifb' , tempParams).then(function(res){
+      console.log("success" + res.status);
+    })
+  }
+
+  /* Email Js Function Ends */
+
   function validate() {
     let loader = document.querySelector(".loader")
     let name = document.querySelector(".username")
@@ -757,14 +771,6 @@ swal({
     })
   }
   validate()
-
-  function sendmail(name, emial, msg) {
-    emailjs.send("service_zg3676a","template_iyuuank",{
-      from_name: name,
-      to_name: email,
-      message: msg,
-    });
-  }
 
   function success() {
     swal({
