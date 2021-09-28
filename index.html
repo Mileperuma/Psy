@@ -80,7 +80,6 @@ swal({
   icon: "success",
   button: "Aww yiss!",
 });
-
 -->
 
 
@@ -633,16 +632,15 @@ swal({
               <div class="title-desc" style="margin-top: 10%;">
                 <div class="anim-2">
                   <h2 class="display-4 display-title text-white">Contact</h2>
-                  <p>For questions about our company and products found on our stores.
-                    Cras vitae neque molestie, rhoncus ipsum sit amet, lobortis dui.
-                    Fusce in urna sem.</p>
+                  <p>You are warmly welcomed to Developer options.. You can used to your comments, suggestions and allegations to us. We are committed to protecting your needs ..Our deepest apologies for the delay and bugs..Thank you for being a part of us </p>
+                
                 </div>
                 <div class="address-container anim-3" style="margin-left: 10%; margin-top: 10%;">
 
                   <div class="row">
                     <div class="col-12 col-md-6 col-lg-6">
                       <h4>Contact</h4>
-                      <p>Call: 077 201 9599<br>Email: psyhospital72@yahoo.com<br><br></p>
+                      <p>Call: 077 201 9599<br>Email: psyhospital72@yahoo.com<br>Powered by Nayanajith Rathnayaka<br><br></p>
 
 
                       <div class="icons icons-margin">
@@ -740,6 +738,7 @@ swal({
 
     emailjs.send('service_t0rzor7','template_f67fifb' , tempParams).then(function(res){
       console.log("success" + res.status);
+      success()
     })
   }
 
@@ -762,11 +761,11 @@ swal({
       else{
         loader.style.display = "flex";
         sendmail(name.value, email.value, msg.value)
-        success();
+        success(1);
         console.log("Email sent")
         loader.style.display = "none";
         sendmail() ? loader.style.display = "none" :
-        error()
+        success()
       }
     })
   }
@@ -779,18 +778,9 @@ swal({
   icon: "success",
   button: "Continue",
 });
-  }
   success()
-
-  function Error() {
-    swal({
-  title: "Unfortunately",
-  text: "Error made",
-  icon: "error",
-  button: "Continue",
-});
   }
-  error()
+  
 
   function inputemty() {
     swal({
@@ -799,8 +789,9 @@ swal({
   icon: "error",
   button: "Continue",
 });
-  }
   inputemty()
+  }
+  
   </script>
 
   <script src="js/vendor/jquery-1.12.4.min.js"></script>
