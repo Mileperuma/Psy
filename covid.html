@@ -463,33 +463,26 @@
               <!-- title and description -->
               <div class="title-desc" style="margin-top: 10%;">
                 <div class="anim-2">
-                  <h2 class="display-4 display-title">Contact</h2>
-                  <p>For questions about our company and products found on our stores.
-                    Cras vitae neque molestie, rhoncus ipsum sit amet, lobortis dui.
-                    Fusce in urna sem.</p>
+                  <h2 class="display-4 display-title text-white">Contact</h2>
+                  <p>You are warmly welcomed to Developer options.. You can used to your comments, suggestions and allegations to us. We are committed to protecting your needs ..Our deepest apologies for the delay and bugs..Thank you for being a part of us </p>
+                
                 </div>
                 <div class="address-container anim-3" style="margin-left: 10%; margin-top: 10%;">
 
                   <div class="row">
                     <div class="col-12 col-md-6 col-lg-6">
                       <h4>Contact</h4>
-                      <p>Call: 011 255 9854</p>
-                      <p>Email: sisara@gmail.com</p>
+                      <p>Call: 077 201 9599<br>Email: psyhospital72@yahoo.com<br>Powered by Nayanajith Rathnayaka<br><br></p>
+
 
                       <div class="icons icons-margin">
                         <a class="icon-btn" href="https://twitter.com/PsychiatricHos3?s=09">
                           <i class="icon fa fa-twitter"></i>
                         </a>
+                        <a class="icon-btn" href="https://www.facebook.com/psyhospitalpanadura/">
+                          <i class="icon fa fa-facebook"></i>
+                        </a>
                       </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                      <h4>Address</h4>
-                      <p>
-                        Sisara Corparation
-                        <br>12 Street Union Place
-                        <br>Bambalapitiya
-                        <br>Colombo 6
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -506,18 +499,16 @@
             <h4>Write message</h4>
             <div class="form-container form-container-card">
               <!-- Message form container -->
-              <form class="send_message_form message form" method="post"
-                action="http://demo.highhay.com/casely/ajaxserver/serverfile.php" id="message_form">
                 <div class="form-group name">
-                  <input id="mes-name" name="name" type="text" placeholder="Name"
+                  <input id="fromName" name="name" type="text" placeholder="Name" 
                     class="form-control form-control-outline thick form-success-clean" required>
                 </div>
                 <div class="form-group email">
-                  <input id="mes-email" type="email" placeholder="Email" name="email"
+                  <input id="fromEmail" type="email" placeholder="Try to use your Email" name="email"
                     class="form-control form-control-outline thick form-success-clean" required>
                 </div>
                 <div class="form-group no-border">
-                  <textarea id="mes-text" placeholder="Message ..." name="message"
+                  <textarea id="fromMessage" placeholder="Message ..." name="fromMessage"
                     class="form-control form-control-outline thick form-success-clean" required></textarea>
 
                   <div>
@@ -528,12 +519,11 @@
 
                 <div class="btns text-right">
                   <button id="submit-message" class="btn btn-outline-white btn-round btn-fullNot email_b"
-                    name="submit_message">
+                    name="submit_message" onclick='sendMail()'>
                     <span class="txt">Send Now</span>
                     <span class="arrow-icon"></span>
                   </button>
                 </div>
-              </form>
             </div>
           </div>
         </div>
@@ -542,6 +532,8 @@
 
     </div>
     <!-- End of contact section -->
+
+    
   </main>
   <!-- END OF page main content -->
 
@@ -552,7 +544,7 @@
     <div class="footer-right">
       <ul class="social">
         <li>
-          <a href="http://facebook.com/">
+          <a href="https://www.facebook.com/psyhospitalpanadura/">
             <i class="icon fa fa-facebook"></i>
           </a>
         </li>
@@ -565,9 +557,75 @@
     </div>
   </footer>
   <!-- END OF site footer -->
+  <script>
 
-  <!-- scripts -->
-  <!-- All Javascript plugins goes here -->
+  /* Email Js Function starts here */
+
+  function sendMail(params){
+    var tempParams = {
+      from_name : document.getElementById("fromName").value,
+      to_name : document.getElementById("fromEmail").value,
+      message : document.getElementById("fromMessage").value,
+    };
+
+    emailjs.send('service_t0rzor7','template_f67fifb' , tempParams).then(function(res){
+      console.log("success" + res.status);
+      success()
+    })
+  }
+
+  /* Email Js Function Ends */
+
+  function validate() {
+    let loader = document.querySelector(".loader")
+    let name = document.querySelector(".username")
+    let emial = document.querySelector(".email")
+    let msg = document.querySelector(".message")
+    let submit = document.querySelector(".submit")
+
+    submit.addEventListener("click", (e)=>{
+      e.preventDefault()
+
+      if(name.value == "" || email.value == "" || msg.value == ""){
+        inputemty();
+
+      }
+      else{
+        loader.style.display = "flex";
+        sendmail(name.value, email.value, msg.value)
+        success(1);
+        console.log("Email sent")
+        loader.style.display = "none";
+        sendmail() ? loader.style.display = "none" :
+        success()
+      }
+    })
+  }
+  validate()
+
+  function success() {
+swal({
+  title: "Good Job",
+  text: "You made it",
+  icon: "success",
+  button: "Continue",
+});
+  success()
+  }
+  
+
+  function inputemty() {
+    swal({
+  title: "Oops !!",
+  text: "Input fields are required",
+  icon: "error",
+  button: "Continue",
+});
+  inputemty()
+  }
+  
+  </script>
+
   <script src="js/vendor/jquery-1.12.4.min.js"></script>
   <script src="js/slick/slick.min.js"></script>
   <script src="js/vendor/parallax.min.js"></script>
@@ -580,5 +638,6 @@
   <script src="js/particlejs/particles-init.js"></script>
 
 </body>
+
 
 </html>
